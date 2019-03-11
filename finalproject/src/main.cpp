@@ -8,13 +8,21 @@
 // for the exception key one-line code such as checking the state of the pin.
 //
 
+#include "audioIn.h"
+#include "audioOut.h"
+#include "waveModulator.h"
+#include "numPad.h"
 
 int main()
 {
+    initAudioIn();
+    initAudioOut();
+    initNumPad();
+
     while(1)
     {
 
     }
 
-  return 0;
+    return 0;
 }
