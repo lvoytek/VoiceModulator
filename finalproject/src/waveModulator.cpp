@@ -4,3 +4,8 @@
 // Assignment: Final Project
 
 #include "waveModulator.h"
+
+int modulateValue(int sample, int modulationType)
+{
+    return 0;
+}

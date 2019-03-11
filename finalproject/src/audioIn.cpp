@@ -7,5 +7,10 @@
 
 void initAudioIn()
 {
-    
+
+}
+
+int sampleInput()
+{
+    return 0;
 }

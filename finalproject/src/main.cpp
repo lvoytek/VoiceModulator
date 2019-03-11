@@ -12,16 +12,25 @@
 #include "audioOut.h"
 #include "waveModulator.h"
 #include "numPad.h"
+#include "timer.h"
+
+// The amount of time paused between audio input sampling in microseconds
+#define SAMPLERATE 100
+
 
 int main()
 {
     initAudioIn();
     initAudioOut();
     initNumPad();
+    initTimer1();
+
+    int modulationVal = 0;
 
     while(1)
     {
-
+        playAudio(modulateValue(sampleInput(), modulationVal));
+        delayUs(SAMPLERATE);
     }
 
     return 0;

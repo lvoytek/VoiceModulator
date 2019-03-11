@@ -6,6 +6,6 @@
 #ifndef WAVEMODULATOR_H
 #define WAVEMODULATOR_H
 
-
+int modulateValue(int sample, int modulationType);
 
 #endif

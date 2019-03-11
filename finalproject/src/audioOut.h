@@ -8,5 +8,7 @@
 
 void initAudioOut();
 
+void playAudio(int sample);
+
 
 #endif
