@@ -1,8 +1,7 @@
-// Author:         
-// Net ID:         
-// Date:           
-// Assignment:     Lab 3
-//----------------------------------------------------------------------//
+// Authors: Nadine Najdawi, Jacob Bowles, Jessica Sofka, Lena Voytek    
+// Net IDs: nadinealnajdawi, bowlesj, jsofka, dvoytek      
+// Date: May 2019      
+// Assignment: Final Project
 
 #ifndef TIMER_H
 #define TIMER_H
