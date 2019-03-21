@@ -9,13 +9,13 @@
 void initTimer1()
 {
     //Set timer to be in CTC mode
-    TCCR1A &= ~(1 << WGM00); 
-    TCCR1A |= (1 << WGM01);
-    TCCR1B &= ~(1 << WGM02);
+    TCCR1A &= ~(1 << WGM10); 
+    TCCR1A |= (1 << WGM11);
+    TCCR1B &= ~(1 << WGM12);
 
     // Sets the prescaler to 8
-    TCCR1B |= (1 << CS01);
-    TCCR1B &= ~(1 << CS02) & ~(1 << CS00); 
+    TCCR1B |= (1 << CS11);
+    TCCR1B &= ~(1 << CS12) & ~(1 << CS10); 
     
     OCR1A = 2; //Create a microsecond based delay with OCR1A of 2
 }
