@@ -2,6 +2,7 @@
 // Net IDs: nadinealnajdawi, bowlesj, jsofka, dvoytek      
 // Date: May 2019      
 // Assignment: Final Project
+// LENA DOES THIS
 
 #include "waveModulator.h"
 
