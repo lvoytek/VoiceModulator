@@ -7,6 +7,7 @@
 // program. It should never contain assignments to special function registers
 // for the exception key one-line code such as checking the state of the pin.
 //
+// JESS DOES THIS
 
 #include "audioIn.h"
 #include "audioOut.h"
