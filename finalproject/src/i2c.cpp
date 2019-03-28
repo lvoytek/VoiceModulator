@@ -10,7 +10,8 @@ void initI2C()
 {
     TWSR |= (1 << TWPS0);
     TWSR &= ~(1 << TWPS1); // prescaler = 1
-    TWBR = 0xC6; // SCL clock scale for 400 kHz
+    TWBR = 0xC6; // SCL clock scale for 40 kHz
+                    //100 kHz - 0x48
 
     TWCR |= (1 << TWINT | 1 << TWEN); // enable two wire interface
 }
