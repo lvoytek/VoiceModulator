@@ -10,35 +10,10 @@
 void initScreen()
 {
     //Set all query values to zero
-    for(int i = 0; i < NUM_QUERIES; i++)
-        audioQueries[i] = 0;
+   // for(int i = 0; i < NUM_QUERIES; i++)
+   //     audioQueries[i] = 0;
 
     initI2C();
-
-    //Initialize screen via i2c
-    /*writeI2CCommand(0xae); //turn off oled panel 
-    writeI2CCommand(0x00); //set low column address 
-    writeI2CCommand(0x10); //set high column address 
-    writeI2CCommand(0x40); //set start line address 
-    writeI2CCommand(0x81); //set contrast control register 
-    writeI2CCommand(0xcf);  
-    writeI2CCommand(0xa1); //set segment re-map 95 to 0 
-    writeI2CCommand(0xa6); //set normal display 
-    writeI2CCommand(0xa8); //set multiplex ratio(1 to 64) 
-    writeI2CCommand(0x3f); //1/64 duty 
-    writeI2CCommand(0xd3); //set display offset 
-    writeI2CCommand(0x00); //not offset 
-    writeI2CCommand(0xd5); //set display clock divide ratio/oscillator frequency 
-    writeI2CCommand(0x80); //set divide ratio 
-    writeI2CCommand(0xd9); //set pre-charge period 
-    writeI2CCommand(0xf1);  
-    writeI2CCommand(0xda); //set com pins hardware configuration 
-    writeI2CCommand(0x12);  
-    writeI2CCommand(0xdb); //set vcomh 
-    writeI2CCommand(0x40);  
-    writeI2CCommand(0x8d); //set Charge Pump enable/disable 
-    writeI2CCommand(0x14); //set(0x10) disable 
-    writeI2CCommand(0xaf); //turn on oled panel*/
 
     writeI2CCommand(0xae);  //display off
     writeI2CCommand(0x2e);  //deactivate scrolling

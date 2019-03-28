@@ -6,7 +6,7 @@
 #define NUM_QUERIES 100
 #define SCREEN_I2C_ADDRESS 0x3D
 
-int audioQueries[NUM_QUERIES];
+//int audioQueries[NUM_QUERIES];
 
 void initScreen();
 void displayGraph();

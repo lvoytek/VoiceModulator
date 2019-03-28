@@ -14,6 +14,7 @@
 #include "waveModulator.h"
 #include "numPad.h"
 #include "timer.h"
+#include "screen.h"
 
 // The amount of time paused between audio input sampling in microseconds
 #define SAMPLERATE 100
@@ -21,6 +22,7 @@
 
 int main()
 {
+    initScreen();
     initAudioIn();
     initAudioOut();
     initNumPad();
