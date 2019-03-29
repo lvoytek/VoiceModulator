@@ -208,27 +208,7 @@ void initScreen()
 /* Repeated display function called every loop */
 void screenLoop()
 {
-    clearOLEDDisplay();    
-    delayMs(500);
-
-    writeI2CCommand(0xA6);  //Set Normal Display
-    writeI2CCommand(0x20);  //Memory addressing mode
-    writeI2CCommand(0x00);  //Horizontal Addressing mode
-
-    for(int i = 0; i < 100*8; i++)
-    {
-        writeI2CByte(logo[i]);
-    }
-
-    delayMs(500);
-    clearOLEDDisplay();
-    delayMs(500);
-
-    writeI2CCommand(0x20);
-    writeI2CCommand(0x02);
-    setOLEDCursorLocation(7, 3);
-    writeOLEDString((unsigned char *)"time");
-
+    displayGraph();
 
     writeI2CCommand(0xAF); //Invert
     delayMs(200);
@@ -241,7 +221,27 @@ void screenLoop()
 
 void displayGraph()
 {
-    
+    clearOLEDDisplay();    
+    delayMs(500);
+
+    writeI2CCommand(0xA6);  //Set Normal Display
+    writeI2CCommand(0x20);  //Memory addressing mode
+    writeI2CCommand(0x00);  //Horizontal Addressing mode
+
+    //Draw y-axis
+    for(int i = 1; i < 7; i++)
+    {
+        setOLEDCursorLocation(i, 1);
+        writeI2CByte(0xFF);
+    }
+
+    //Label x-axis
+    writeI2CCommand(0x20);
+    writeI2CCommand(0x02);
+    setOLEDCursorLocation(7, 3);
+    writeOLEDString((unsigned char *)"time");
+
+    delayMs(500);
 }
 
 
