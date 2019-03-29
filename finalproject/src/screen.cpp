@@ -196,12 +196,12 @@ void initScreen()
     writeI2CCommand(0xa6);  // Set WHITE chars on BLACK backround
     writeI2CCommand(0x81);  // Setup CONTRAST CONTROL, following byte is the contrast Value
     writeI2CCommand(0xaf);  // contrast value between 1 ( == dull) to 256 ( == bright)
-    delayUs(20);
+    delayMs(20);
     writeI2CCommand(0xaf);  //display on
-    delayUs(30);
+    delayMs(30);
 
     clearOLEDDisplay();    
-    delayUs(500);
+    delayMs(500);
 
 }
 
@@ -209,7 +209,7 @@ void initScreen()
 void screenLoop()
 {
     clearOLEDDisplay();    
-    delayUs(500);
+    delayMs(500);
 
     writeI2CCommand(0xA6);  //Set Normal Display
     writeI2CCommand(0x20);  //Memory addressing mode
@@ -220,9 +220,9 @@ void screenLoop()
         writeI2CByte(logo[i]);
     }
 
-    delayUs(500);
+    delayMs(500);
     clearOLEDDisplay();
-    delayUs(500);
+    delayMs(500);
 
     writeI2CCommand(0x20);
     writeI2CCommand(0x02);
@@ -231,10 +231,10 @@ void screenLoop()
 
 
     writeI2CCommand(0xAF); //Invert
-    delayUs(200);
+    delayMs(200);
 
     writeI2CCommand(0xA7); //Fill
-    delayUs(200);
+    delayMs(200);
 }
 
 

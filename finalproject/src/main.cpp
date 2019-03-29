@@ -17,21 +17,13 @@
 #include "screen.h"
 
 // The amount of time paused between audio input sampling in microseconds
-#define SAMPLERATE 100
+#define SAMPLERATE 10
 
 
 int main()
 {
     initTimer1();
     initScreen();
-
-    //Screen test loop
-    while(1)
-    {
-        screenLoop();
-    }
-
-
     initAudioIn();
     initAudioOut();
     initNumPad();
@@ -42,7 +34,8 @@ int main()
     while(1)
     {
         playAudio(modulateValue(sampleInput(), modulationVal));
-        delayUs(SAMPLERATE);
+        screenLoop();
+        delayMs(SAMPLERATE);
     }
 
     return 0;

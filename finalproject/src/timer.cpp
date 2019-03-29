@@ -20,9 +20,9 @@ void initTimer1()
     OCR1A = 2; //Create a microsecond based delay with OCR1A of 2
 }
 
-/* This delays the program an amount specified by unsigned int delay in microseconds.
+/* This delays the program an amount specified by unsigned int delay in milliseconds.
 */
-void delayUs(unsigned int delay)
+void delayMs(unsigned int delay)
 {
     unsigned int delayCount = 0; //Use this variable to count passed microseconds
 
