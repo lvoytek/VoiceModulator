@@ -1,7 +1,7 @@
 // Authors: Nadine Najdawi, Jacob Bowles, Jessica Sofka, Lena Voytek    
 // Net IDs: nadinealnajdawi, bowlesj, jsofka, dvoytek      
-// Date: 8 April 2019 
-// Project Name: Lab 5
+// Date: May 2019
+// Project Name: Final
 
 #include "i2c.h"
 

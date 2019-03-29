@@ -22,11 +22,20 @@
 
 int main()
 {
+    initTimer1();
     initScreen();
+
+    //Screen test loop
+    while(1)
+    {
+        screenLoop();
+    }
+
+
     initAudioIn();
     initAudioOut();
     initNumPad();
-    initTimer1();
+    
 
     int modulationVal = 0;
 

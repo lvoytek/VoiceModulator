@@ -6,15 +6,17 @@
 #define NUM_QUERIES 100
 #define SCREEN_I2C_ADDRESS 0x3D
 
-//int audioQueries[NUM_QUERIES];
-
 void initScreen();
+void screenLoop();
+
 void displayGraph();
 
 //Internal commands
-void writeI2CCommand(int command);
-void writeI2CByte(int data);
+void writeI2CCommand(unsigned char command);
+void writeI2CByte(unsigned char data);
+void pixelOn(unsigned char row, unsigned char column);
 void clearOLEDDisplay();
-void setOLEDCursorLocation(int row, int column);
+void setOLEDCursorLocation(unsigned char row, unsigned char column);
+void writeOLEDString(unsigned char * str);
 
 #endif
