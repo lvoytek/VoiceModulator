@@ -121,13 +121,17 @@ void initScreen()
 
     initI2C();
 
-    /*DDRG |= (1<<DDG5);
+    DDRG |= (1<<DDG5);
 
     PORTG |= (1 << PORTG5);
 
-    delayMs(20);
+    delayMs(1);
 
-    PORTG &= ~(1 << PORTG5);*/
+    PORTG &= ~(1 << PORTG5);
+
+    delayMs(10);
+
+    PORTG |= (1 << PORTG5);
 
   /*  writeI2CCommand(0xae);  //display off
     writeI2CCommand(0x2e);  //deactivate scrolling
