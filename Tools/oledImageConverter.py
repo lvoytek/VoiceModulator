@@ -9,10 +9,19 @@ width = int(input("Image width: "))
 
 newPixels = [pixels[i:i+width] for i in range(0, len(pixels), width)]
 
+#Append empty pixels to end
+for i in range(len(newPixels)):
+	for j in range(128-width):
+		newPixels[i].append(0)
+
+#Append empty rows to end
+while len(newPixels) < 64:
+	newPixels.append([0 for i in range(128)])
+
 horizontalBytes = list()
 
-for i in range(width):
-	for j in range(int(len(pixels)/width/8)):
+for j in range(8):
+	for i in range(128):
 		horizontalBytes.append([newPixels[j*8 + k][i] for k in range(8)])
 
 horizontalBytesAsInts = list()
@@ -21,16 +30,18 @@ for byte in horizontalBytes:
 	newInt = 0
 	for i in range(len(byte)):
 		if byte[i] > 123:
-			newInt = newInt | (1 << (7 - i))
+			newInt = newInt | (1 << (i))
 
 	horizontalBytesAsInts.append(newInt)
 
 
 outFile = open("image.txt", 'w')
-outFile.write("unsigned char image[][] = {")
+outFile.write("unsigned char logo[] = {")
 
-for byte in horizontalBytesAsInts:
+for byte in horizontalBytesAsInts[0:-1]:
 	outFile.write(hex(byte))
 	outFile.write(',')
+
+outFile.write(hex(horizontalBytesAsInts[-1]))
 
 outFile.write("};")

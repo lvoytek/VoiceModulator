@@ -10,6 +10,7 @@ void initScreen();
 void screenLoop();
 
 void displayGraph();
+void drawLogo();
 
 //Internal commands
 void writeI2CCommand(unsigned char command);
