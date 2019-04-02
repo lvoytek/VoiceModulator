@@ -67,14 +67,14 @@ void initScreen()
 void screenLoop()
 {
     //displayGraph();
-    drawLogo(arch, 1024);
+    drawLogo(dale, 1024);
 
     delayMs(50000);
 
     writeI2CCommand(0xAE); //Off
     writeI2CCommand(0xA7); //Invert
     writeI2CCommand(0xAF); //On
-    delayMs(200);
+    delayMs(2);
 }
 
 
