@@ -10,7 +10,7 @@ void initScreen();
 void screenLoop();
 
 void displayGraph();
-void drawLogo();
+void drawLogo(unsigned char * logo, int logoSize);
 
 //Internal commands
 void writeI2CCommand(unsigned char command);
