@@ -16,5 +16,23 @@ void initAudioOut()
 
 void playAudio(int sample)
 {
-    
+    uint8_t wSelect = 0;
+    uint8_t LRChannel = 0;
+
+    for(int i = 0; i < 64; i++)
+    {
+        //Change between left and right channels
+        if(!wSelect)
+        {
+            if(LRChannel)
+            {
+                LRChannel = 0;
+            }
+            else
+            {
+                LRChannel = 1;
+            }
+            
+        }
+    }
 }
