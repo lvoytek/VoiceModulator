@@ -15,7 +15,7 @@
 
 void initAudioOut();
 
-void playAudio(int sample);
+void playAudio(int pitch, int volume);
 
 
 #endif

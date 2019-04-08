@@ -11,28 +11,17 @@
 /* Initialize I2S Pins as output */
 void initAudioOut()
 {
-    DDRB |= (1<<I2S_SCK) | (1<<I2S_WS) | (1<<I2S_SD);
+    DDRE |= (1 << DDE3); /* pin 5 on the dev board */
+
+    // set Fast PWM 10-bit mode, non-inverting
+    TCCR3A |= (1 << COM3A1)|(1 << WGM31)|(1 << WGM30);
+    TCCR3B |= (1 << WGM32)|(1 << CS30);
+
+    // set the duty cycle 0%
+    OCR3A = 0;
 }
 
-void playAudio(int sample)
+void playAudio(int pitch, int volume)
 {
-    uint8_t wSelect = 0;
-    uint8_t LRChannel = 0;
-
-    for(int i = 0; i < 64; i++)
-    {
-        //Change between left and right channels
-        if(!wSelect)
-        {
-            if(LRChannel)
-            {
-                LRChannel = 0;
-            }
-            else
-            {
-                LRChannel = 1;
-            }
-            
-        }
-    }
+    OCR3A = (int) (1023/100.0 * pitch);
 }
