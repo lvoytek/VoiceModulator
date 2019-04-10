@@ -6,22 +6,40 @@
 
 #include "audioOut.h"
 
-#include <util/delay.h>
-
-/* Initialize I2S Pins as output */
-void initAudioOut()
+/* Play a tone on pin 5 at a given frequency */
+void playTone(int frequency)
 {
-    DDRE |= (1 << DDE3); /* pin 5 on the dev board */
+    //Set pin 5 to output
+    DDRE |= (1 << DDE3);
 
-    // set Fast PWM 10-bit mode, non-inverting
-    TCCR3A |= (1 << COM3A1)|(1 << WGM31)|(1 << WGM30);
-    TCCR3B |= (1 << WGM32)|(1 << CS30);
+    //Calculate top value neccessary to produce frequency
+    unsigned long top = F_CPU / frequency / 4 - 1;
 
-    // set the duty cycle 0%
-    OCR3A = 0;
+    //Choose prescalar in range of frequency, 256 if higher, 1 if lower
+    if(top > 65535)
+    {
+        top = top / 256 - 1; 
+        TCCR1B = (1 << CS12) | (1 << WGM13);
+    }
+    else
+    {
+        TCCR1B = (1 << CS10) | (1 << WGM13);
+    }
+    
+    ICR1 = top; //Send top value to pwm
+
+    //Confirm counter not exceeding top
+    if (TCNT1 > top) 
+        TCNT1 = top;
+
+    TCCR1A = COM1B0;
+    TIMSK1 |= OCIE1A; //Activate timer interrupt
+
 }
 
-void playAudio(int pitch, int volume)
+/* Stop the current tone */
+void stopTone()
 {
-    OCR3A = (int) (1023/100.0 * pitch);
+    //Turn pin 5 output off
+    DDRE &= ~(1 << DDE3);
 }

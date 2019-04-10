@@ -25,7 +25,6 @@ int main()
     initTimer1();
     initScreen();
     initAudioIn();
-    initAudioOut();
     initNumPad();
     
 
@@ -33,9 +32,14 @@ int main()
 
     while(1)
     {
-        playAudio(modulateValue(sampleInput(), modulationVal));
+        playTone(modulationVal);
         screenLoop();
         delayMs(SAMPLERATE);
+        stopTone();
+
+        if(modulationVal >= 20000)
+            modulationVal = 0;
+        modulationVal +=10;
     }
 
     return 0;

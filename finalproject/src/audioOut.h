@@ -8,14 +8,9 @@
 
 #include <avr/io.h>
 
-//I2S Pin Definitions
-#define I2S_SCK  PB7
-#define I2S_WS   PB6
-#define I2S_SD   PB5
+void playTone(int frequency);
 
-void initAudioOut();
-
-void playAudio(int pitch, int volume);
+void stopTone();
 
 
 #endif
