@@ -8,5 +8,5 @@
 
 void initNumPad();
 
-
+int getNumpadValue();
 #endif
