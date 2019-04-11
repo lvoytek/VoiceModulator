@@ -17,28 +17,56 @@
 #include "screen.h"
 
 // The amount of time paused between audio input sampling in microseconds
-#define SAMPLERATE 10
+#define SAMPLERATE 100
 
+#define NOTE_C4  262
+#define NOTE_G3  196
+#define NOTE_A3  220
+#define NOTE_B3  247
+
+int melody[] = {
+  NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4
+};
+
+int noteDurations[] = {
+  4, 8, 8, 4, 4, 4, 4, 4
+};
 
 int main()
 {
-    initTimer1();
+    
+    initAudioOut();
+    initTimer0();
+
+    for (int thisNote = 0; thisNote < 8; thisNote++) {
+        playTone(melody[thisNote]);
+
+        delayMs(300);      
+    
+        stopTone();
+    }
+
     initScreen();
     initAudioIn();
     initNumPad();
-    
+    int modulationVal = 30;
 
-    int modulationVal = 0;
+
+
 
     while(1)
     {
         playTone(modulationVal);
-        screenLoop();
-        delayMs(SAMPLERATE);
+
+        //screenLoop();
+        //delayMs(SAMPLERATE);
+
+        delayMs(100);
+
         stopTone();
 
-        if(modulationVal >= 20000)
-            modulationVal = 0;
+        if(modulationVal >= 1500)
+            modulationVal = 30;
         modulationVal +=10;
     }
 
