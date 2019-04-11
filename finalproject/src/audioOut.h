@@ -6,11 +6,12 @@
 #ifndef AUDIOOUT_H
 #define AUDIOOUT_H
 
-#include <avr/io.h>
+#include <Arduino.h>
+
+void initAudioOut();
 
 void playTone(int frequency);
 
 void stopTone();
-
 
 #endif
