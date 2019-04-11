@@ -69,12 +69,10 @@ void screenLoop()
     //displayGraph();
     drawLogo(dale, 1024);
 
-    delayMs(50000);
-
-    writeI2CCommand(0xAE); //Off
+    /*writeI2CCommand(0xAE); //Off
     writeI2CCommand(0xA7); //Invert
     writeI2CCommand(0xAF); //On
-    delayMs(2);
+    delayMs(2);*/
 }
 
 
@@ -98,7 +96,6 @@ void drawLogo(unsigned char * logo, int logoSize)
 void displayGraph()
 {
     clearOLEDDisplay();    
-    delayMs(500);
 
     writeI2CCommand(0xA6);  //Set Normal Display
     writeI2CCommand(0x20);  //Memory addressing mode
@@ -128,8 +125,6 @@ void displayGraph()
     writeI2CCommand(0x20);
     writeI2CCommand(0x02);
     writeOLEDString((unsigned char *)"time");
-
-    delayMs(500);
 }
 
 
