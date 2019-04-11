@@ -6,11 +6,20 @@
 #define NUM_QUERIES 100
 #define SCREEN_I2C_ADDRESS 0x3D
 
+typedef struct logo_t
+{
+    unsigned char * bytes;
+    int size;
+} logo;
+
 void initScreen();
 void screenLoop();
 
 void displayGraph();
-void drawLogo(unsigned char * logo, int logoSize);
+void drawLogo();
+
+logo createLogo(unsigned char * bytes, int size);
+void changeLogo(int logoNum);
 
 //Internal commands
 void writeI2CCommand(unsigned char command);
