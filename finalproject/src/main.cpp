@@ -59,7 +59,12 @@ int main()
 		stopTone();
 
 		//Numpad Section
-
+		int numPadVal = getNumpadValue();
+		if(numPadVal)
+		{
+			changeLogo(numPadVal -1);
+			//TODO: Change modulation
+		}
 
 		//Display Section
         if(screenUpdateCounter >= SCREENUPDATERATE)
