@@ -5,8 +5,6 @@
 // JACOB DOES THIS
 
 #include "numPad.h"
-
-#include "NUMPAD.h"
 #include <Keypad.h>
 #include <Key.h>
 
