@@ -15,7 +15,7 @@
 #include "numPad.h"
 #include "timer.h"
 #include "screen.h"
-
+#include <Arduino.h>
 // The amount of time paused between audio input sampling in microseconds
 #define SAMPLERATE 10
 #define SCREENUPDATERATE 5000
@@ -55,6 +55,7 @@ int main()
 
     while(1)
     {
+	    loop();//arduino code for button press  
 		//Audio Input and Output Pause Section
 		stopTone();
 
