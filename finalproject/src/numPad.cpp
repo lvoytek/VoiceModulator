@@ -9,7 +9,7 @@
 #include <Key.h>
 
 const byte ROWS = 4; // Four rows
-const byte COLS = 4; // Three columns
+const byte COLS = 4; // Four columns
 // Define the Keymap
 char hold;//data of key pressed
 void initNumPad(){//startup
