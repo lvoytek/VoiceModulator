@@ -35,7 +35,6 @@ int noteDurations[] = {
 
 int main()
 {
-    
     initAudioOut();
     initTimer0();
 
@@ -61,11 +60,13 @@ int main()
 
 		//Numpad Section
 		int numPadVal = getNumpadValue();
-		if(numPadVal)
+		if(numPadVal > 0)
 		{
-			changeLogo(numPadVal -1);
+			changeLogo(numPadVal);
 			//TODO: Change modulation
 		}
+		Serial.println(numPadVal);
+		Serial.flush();
 
 		//Display Section
         if(screenUpdateCounter >= SCREENUPDATERATE)

@@ -97,7 +97,7 @@ void drawLogo()
     writeI2CCommand(0xAF);
 }
 
-void chooseLogo(int logoNum)
+void changeLogo(int logoNum)
 {
     currentLogo = logos + logoNum;
 }
