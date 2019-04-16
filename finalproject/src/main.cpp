@@ -60,7 +60,7 @@ int main()
 
 		//Numpad Section
 		int numPadVal = getNumpadValue();
-		if(numPadVal > 0)
+		if(numPadVal >= 0)
 		{
 			changeLogo(numPadVal);
 			//TODO: Change modulation

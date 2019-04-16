@@ -13,7 +13,7 @@ const byte COLS = 4; // Four columns
 // Define the Keymap
 char hold;//data of key pressed
 void initNumPad(){//startup
-  init();//arduino code for loop code
+  //init();//arduino code for loop code
 setup();
 }
 char keys[ROWS][COLS] = {
@@ -49,6 +49,7 @@ void loop()
   }
 }
 int getNumpadValue(){//return key
+
 int tomain;
 switch (hold){//convert to int
   case '1':
@@ -81,6 +82,10 @@ break;
 case '0':
 tomain=0;
 break;
+default:
+  return -1;
+
+
 }
 return tomain;//takes data to main
 }

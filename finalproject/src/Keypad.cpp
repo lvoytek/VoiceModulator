@@ -70,11 +70,11 @@ bool Keypad::getKeys() {
 	bool keyActivity = false;
 
 	// Limit how often the keypad is scanned. This makes the loop() run 10 times as fast.
-	if ( (millis()-startTime)>debounceTime ) {
+	//if ( (millis()-startTime)>debounceTime ) {
 		scanKeys();
 		keyActivity = updateList();
-		startTime = millis();
-	}
+	//	startTime = millis();
+	//}
 
 	return keyActivity;
 }
