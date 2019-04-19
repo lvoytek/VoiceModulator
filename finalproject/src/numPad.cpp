@@ -87,5 +87,6 @@ default:
 
 
 }
+hold = -1;
 return tomain;//takes data to main
 }

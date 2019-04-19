@@ -50,6 +50,8 @@ int main()
     initNumPad();
     int modulationVal = 30;
     
+	drawLogo();
+	
 	int screenUpdateCounter = SCREENUPDATERATE;
 
     while(1)
@@ -63,6 +65,9 @@ int main()
 		if(numPadVal >= 0)
 		{
 			changeLogo(numPadVal);
+			delayMs(100);
+			drawLogo();
+
 			//TODO: Change modulation
 		}
 		Serial.println(numPadVal);
