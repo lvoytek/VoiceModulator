@@ -7,6 +7,8 @@ pixels = list(im.getdata())
 
 width = int(input("Image width: "))
 
+threshold = int(input("Threshold: "))
+
 newPixels = [pixels[i:i+width] for i in range(0, len(pixels), width)]
 
 #Append empty pixels to end
@@ -29,7 +31,7 @@ horizontalBytesAsInts = list()
 for byte in horizontalBytes:
 	newInt = 0
 	for i in range(len(byte)):
-		if byte[i] > 123:
+		if byte[i] > threshold:
 			newInt = newInt | (1 << (i))
 
 	horizontalBytesAsInts.append(newInt)
