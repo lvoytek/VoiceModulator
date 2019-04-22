@@ -6,12 +6,40 @@
 
 #include "audioIn.h"
 
+int sensorPin = A0; 
+
 void initAudioIn()
 {
+  DDRB &= ~(1 << DDF0);
+  PORTB |= (1 << PORTF0);
 
+ // DDRB &= ~(1 << DDF1);
+ // PORTB |= (1 << PORTF1);
+
+  DDRB &= ~(1 << DDC1);
+  PORTB |= (1 << PORTC1);
+
+ // DDRB &= ~(1 << DDC3);
+ // PORTB |= (1 << PORTC3);
 }
 
 int sampleInput()
 {
-    return 0;
+  int Analog_x = A0; // X-axis-signal
+  int Digital_x = 3; // Button
+  float Analog;
+  int Digital;
+  long sum = 0;
+  int sensorVal = 0;
+
+  for (int i = 0; i < 100; i++) {
+    sum = sum + analogRead(Analog_x);
+  }
+  sensorVal = analogRead(Analog_x);
+  
+  // Current value will be read and converted to voltage 
+  Analog = analogRead (Analog_x) * (5.0 / 1023.0); 
+  Digital = digitalRead (Digital_x);
+
+  delayMs(200);
 }
