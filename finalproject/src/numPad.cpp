@@ -12,10 +12,9 @@ const byte ROWS = 4; // Four rows
 const byte COLS = 4; // Four columns
 // Define the Keymap
 char hold;//data of key pressed
-void initNumPad(){//startup
-  //init();//arduino code for loop code
-setup();
-}
+
+void initNumPad(){}//startup
+
 char keys[ROWS][COLS] = {
   {'1','2','3','A'},
   {'4','5','6','B'},
@@ -32,11 +31,6 @@ Keypad kpd = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
 
 
-void setup()
-{
-  
-  Serial.begin(9600);
-}
 
 void loop()
 {

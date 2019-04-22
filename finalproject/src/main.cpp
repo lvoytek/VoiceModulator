@@ -70,8 +70,6 @@ int main()
 
 			//TODO: Change modulation
 		}
-		Serial.println(numPadVal);
-		Serial.flush();
 
 		//Display Section
         if(screenUpdateCounter >= SCREENUPDATERATE)
