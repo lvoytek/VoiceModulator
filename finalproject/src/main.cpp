@@ -82,10 +82,10 @@ int main()
 
 
 		//Audio Calculation and Output Section
-		if(modulationVal >= 1500)
+		/*if(modulationVal >= 1500)
         	modulationVal = 30;
-		modulationVal +=10;
-
+		modulationVal +=10;*/
+		modulationVal = sampleInput();
 		playTone(modulationVal);
 
         //Delay and Update Counter Section

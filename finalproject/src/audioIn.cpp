@@ -5,6 +5,7 @@
 // NADINE DOES THIS
 
 #include "audioIn.h"
+#include "Arduino.h"
 
 int sensorPin = A0; 
 
@@ -41,5 +42,5 @@ int sampleInput()
   Analog = analogRead (Analog_x) * (5.0 / 1023.0); 
   Digital = digitalRead (Digital_x);
 
-  delayMs(200);
+  return Digital;
 }
