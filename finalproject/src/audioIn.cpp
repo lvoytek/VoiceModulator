@@ -10,17 +10,17 @@ int sensorPin = A0;
 
 void initAudioIn()
 {
-  DDRB &= ~(1 << DDF0);
+  DDRB &= ~(1 << DDF0); // Analog Pin A0
   PORTB |= (1 << PORTF0);
 
- // DDRB &= ~(1 << DDF1);
- // PORTB |= (1 << PORTF1);
+  // DDRB &= ~(1 << DDF1);
+  // PORTB |= (1 << PORTF1);
 
-  DDRB &= ~(1 << DDC1);
-  PORTB |= (1 << PORTC1);
+  DDRB &= ~(1 << DDG1); // Digital Pin 40
+  PORTB |= (1 << PORTG1);
 
- // DDRB &= ~(1 << DDC3);
- // PORTB |= (1 << PORTC3);
+  // DDRB &= ~(1 << DDC3);
+  // PORTB |= (1 << PORTC3);
 }
 
 int sampleInput()
