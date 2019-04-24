@@ -7,46 +7,24 @@
 #include "audioIn.h"
 #include "Arduino.h"
 
-int sensorPin = A0; 
-
 void initAudioIn()
 {
-  DDRF &= ~(1 << DDF0); // Analog Pin A0
-  PORTF |= (1 << PORTF0);
+	ADCSRA = 0;             // clear ADCSRA register
+	ADCSRB = 0;             // clear ADCSRB register
+	ADMUX |= (0 & 0x07);    // set A0 analog input pin
+	ADMUX |= (1 << REFS0);  // set reference voltage
+	ADMUX |= (1 << ADLAR);  // left align ADC value to 8 bits from ADCH register
 
-  // DDRB &= ~(1 << DDF1);
-  // PORTB |= (1 << PORTF1);
+	// sampling rate is [ADC clock] / [prescaler] / [conversion clock cycles]
+	// for Arduino Uno ADC clock is 16 MHz and a conversion takes 13 clock cycles
+	//ADCSRA |= (1 << ADPS2) | (1 << ADPS0);    // 32 prescaler for 38.5 KHz
+	ADCSRA |= (1 << ADPS2);                     // 16 prescaler for 76.9 KHz
+	//ADCSRA |= (1 << ADPS1) | (1 << ADPS0);    // 8 prescaler for 153.8 KHz
 
-  DDRG &= ~(1 << DDG1); // Digital Pin 40
-  PORTG |= (1 << PORTG1);
-
-  // DDRB &= ~(1 << DDC3);
-  // PORTB |= (1 << PORTC3);
-  Serial.begin(9600);
+	ADCSRA |= (1 << ADATE); // enable auto trigger
+	ADCSRA |= (1 << ADIE);  // enable interrupts when measurement complete
+	ADCSRA |= (1 << ADEN);  // enable ADC
+	ADCSRA |= (1 << ADSC);  // start ADC measurements
+	sei(); //enable interrupts
 }
 
-int sampleInput()
-{
-  int Analog_x = A0; // X-axis-signal
-  int Digital_x = 40; // Button
-  float Analog;
-  int Digital;
-  long sum = 0;
-  int sensorVal = 0;
-
-  for (int i = 0; i < 100; i++) {
-    sum = sum + analogRead(Analog_x);
-  }
-  sensorVal = analogRead(Analog_x);
-  
-  // Current value will be read and converted to voltage 
-  //Analog = analogRead (Analog_x) * (5.0 / 1023.0); 
-  Digital = digitalRead (Digital_x);
-
-  Serial.print(Digital);
-  Serial.print(" ");
-  Serial.println(sum);
-  Serial.flush();
-
-  return sum;
-}

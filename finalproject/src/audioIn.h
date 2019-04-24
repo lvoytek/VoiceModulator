@@ -8,7 +8,4 @@
 
 void initAudioIn();
 
-int sampleInput();
-
-
 #endif

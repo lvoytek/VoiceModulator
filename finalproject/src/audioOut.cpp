@@ -6,49 +6,31 @@
 
 #include "audioOut.h"
 
-/* Initialize pin 5 for audio output */
+/* Initialize pin 9 for audio output */
 void initAudioOut()
 {
-	sei();
-	DDRE |= (1 << DDE3); //Set pin 5 to output
+    DDRH |= (1 << DDH6); //Pin 9 on board output
+
+    // Use internal clock
+    ASSR &= ~(_BV(EXCLK) | _BV(AS2));
+
+    // Set fast PWM mode
+    TCCR2A |= _BV(WGM21) | _BV(WGM20);
+    TCCR2B &= ~_BV(WGM22);
+
+    // Non-inverting PWM on OC2B (pin 9)
+    TCCR2A = (TCCR2A | _BV(COM2B1)) & ~_BV(COM2B0);
+    TCCR2A &= ~(_BV(COM2A1) | _BV(COM2A0));
+
+    //Prescalar of 1
+    TCCR2B = (TCCR2B & ~(_BV(CS12) | _BV(CS11))) | _BV(CS10);
+
+    // Set initial pulse width 0.
+    OCR2B = 0;
 }
 
-/* Play a tone on pin 5 at a given frequency */
-void playTone(int frequency)
+/* Play a tone on pin 9 at a given frequency */
+void playTone(int pwmVal)
 {
-	//Choose prescalar of 1 (>61 Hz)
-	uint8_t prescaler = (1 << CS10);
-	unsigned long top = F_CPU / frequency / 4 - 1; // Calculate interrupt value top
-	
-	//Swap to prescalar 256 if top too large (<= 61 Hz)
-	if (top > 65535)
-	{
-		prescaler = (1 << CS12); //Set prescaler
-		top = top / 256 - 1; //Find new top from 256 prescalar
-	}
-
-	ICR1 = top; //Set internal interrupt to top
-
-	//Reduce counter if already exceeding top value
-	if (TCNT1 > top) 
-		TCNT1 = top;
-
-	TCCR1B = (1 << WGM13) | prescaler; //Set prescaler
-	TCCR1A = (1 << COM1B0);
-	TIMSK1 |= (1 << OCIE1A); //Activate timer1 interrupt
-
-}
-
-/* Stop the current tone */
-void stopTone()
-{
-	TIMSK1 &= ~(1 << OCIE1A); //Remove timer interrupt
-	PORTE &= ~(1 << PORTE3); //Turn off pin 5 output
-}
-
-
-/* Timer interrupt */
-ISR(TIMER1_COMPA_vect)
-{
-	PORTE ^= (1 << PORTE3); //Toggle pin output
+	OCR2B = pwmVal;
 }

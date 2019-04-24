@@ -10,8 +10,6 @@
 
 void initAudioOut();
 
-void playTone(int frequency);
-
-void stopTone();
+void playTone(int pwmVal);
 
 #endif
