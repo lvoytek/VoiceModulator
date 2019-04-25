@@ -7,6 +7,7 @@
 #define NUMPAD_H
 
 void initNumPad();
+void checkForKeys();
 
 int getNumpadValue();
 #endif

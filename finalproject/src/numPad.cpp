@@ -29,58 +29,52 @@ byte colPins[COLS] = { 32,34,36,38 };
 // Create the Keypad
 Keypad kpd = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
-
-
-
-void loop()
+void checkForKeys()
 {
   char key = kpd.getKey();
   if(key)  // Check for a valid key.
   {
-   
-      //  Serial.println(key);
     hold=key;
   }
 }
+
 int getNumpadValue(){//return key
 
-int tomain;
-switch (hold){//convert to int
-  case '1':
-tomain=1;
-break;
-case '2':
-tomain=2;
-break;
-case '3':
-tomain=3;
-break;
-case'4':
-tomain=4;
-break;
-case '5':
-tomain=5;
-break;
-case '6':
-tomain=6;
-break;
-case '7':
-tomain=7;
-break;
-case'8':
-tomain=8;
-break;
-case '9':
-tomain=9;
-break;
-case '0':
-tomain=0;
-break;
-default:
-  return -1;
-
-
-}
-hold = -1;
-return tomain;//takes data to main
+	int tomain;
+	switch (hold){//convert to int
+		case '1':
+			tomain=1;
+			break;
+		case '2':
+			tomain=2;
+			break;
+		case '3':
+			tomain=3;
+			break;
+		case'4':
+			tomain=4;
+			break;
+		case '5':
+			tomain=5;
+			break;
+		case '6':
+			tomain=6;
+			break;
+		case '7':
+			tomain=7;
+			break;
+		case'8':
+			tomain=8;
+			break;
+		case '9':
+			tomain=9;
+			break;
+		case '0':
+			tomain=0;
+			break;
+		default:
+			return -1;
+	}
+	hold = -1;
+	return tomain;//takes data to main
 }

@@ -28,9 +28,3 @@ void initAudioOut()
     // Set initial pulse width 0.
     OCR2B = 0;
 }
-
-/* Play a tone on pin 9 at a given frequency */
-void playTone(int pwmVal)
-{
-	OCR2B = pwmVal;
-}

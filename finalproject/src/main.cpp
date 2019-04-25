@@ -17,10 +17,15 @@
 #include "screen.h"
 #include <Arduino.h>
 
+#define NUMPADCHECKRATE 1000 //# of milliseconds between button press checks
+
 //Ring buffer for audio input data
 unsigned char buffer[256];
 unsigned char recordLoc = 0;
-int modulationVal;
+
+//Values for audio modulation
+int modulationType = 0;
+int modulationVal = 0;
 
 int main()
 {
@@ -33,27 +38,19 @@ int main()
 
     while(1)
     {
-	    /*loop();//arduino code for button press  
-
 		//Numpad Section
+	    checkForKeys(); //Check for key press on numPad  
+
 		int numPadVal = getNumpadValue();
-		if(numPadVal >= 0)
+		if(numPadVal >= 0 && numPadVal != modulationType)
 		{
 			changeLogo(numPadVal);
 			delayMs(100);
 			drawLogo();
-			modulationVal = numPadVal;
-		}*/
+			modulationType = numPadVal;
+		}
 
-
-		//Audio Calculation and Output Section
-		/*if(modulationVal >= 1500)
-        	modulationVal = 30;
-		modulationVal +=10;*/
-
-        //Delay and Update Counter Section
-		//screenUpdateCounter += SAMPLERATE;
-		//delayMs(SAMPLERATE);
+		delayMs(NUMPADCHECKRATE);
     }
 
     return 0;
@@ -61,8 +58,19 @@ int main()
 
 ISR(ADC_vect) 
 {
-	buffer[recordLoc ++] = ADCH;
-	
-	modulationVal = buffer[recordLoc - 1];
-	playTone(modulationVal);
+	modulationVal = ADCH;
+	buffer[recordLoc ++] = modulationVal; 
+
+	switch(modulationType)
+	{
+		//No Modulation
+		case 0:
+			OCR2B = modulationVal;
+			break;
+		
+		//Echo
+		case 1:
+			OCR2B = modulationVal + buffer[recordLoc - 10];
+			break;
+	}
 }
