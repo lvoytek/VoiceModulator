@@ -11,7 +11,6 @@
 
 #include "audioIn.h"
 #include "audioOut.h"
-#include "waveModulator.h"
 #include "numPad.h"
 #include "timer.h"
 #include "screen.h"
@@ -20,8 +19,8 @@
 #define NUMPADCHECKRATE 1000 //# of milliseconds between button press checks
 
 //Ring buffer for audio input data
-unsigned char buffer[256];
-unsigned char recordLoc = 0;
+unsigned char buffer[3000];
+unsigned int recordLoc = 0;
 
 //Values for audio modulation
 int modulationType = 0;
@@ -60,6 +59,8 @@ ISR(ADC_vect)
 {
 	modulationVal = ADCH;
 	buffer[recordLoc ++] = modulationVal; 
+	if(recordLoc > 3000)
+		recordLoc = 0;
 
 	switch(modulationType)
 	{
@@ -70,7 +71,17 @@ ISR(ADC_vect)
 		
 		//Echo
 		case 1:
-			OCR2B = modulationVal + buffer[recordLoc - 10];
+			OCR2B = modulationVal + buffer[(recordLoc - 2700)%3000];
+			break;
+
+		//Pitch up
+		case 2:
+			OCR2B = modulationVal >> 2;
+			break;
+
+		//Cutoff
+		case 3:
+			OCR2B = 255 - modulationVal;
 			break;
 	}
 }
